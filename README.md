@@ -18,7 +18,6 @@ O sistema permite **cadastrar, listar, editar e excluir** cursos e alunos, mante
 - `id` → Identificador único (PK)
 - `nome` → Nome do aluno
 - `email` → E-mail do aluno (único)
-- `data_nascimento` → Data de nascimento
 - `curso_id` → ID do curso (FK)
 
 ---
