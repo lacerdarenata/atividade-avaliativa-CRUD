@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Lista de Alunos</h1>
+
+<a href="{{ url_for('criar_aluno') }}" class="btn btn-primary">+ Novo Aluno</a>
+
+<table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Curso</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for aluno in alunos %}
+        <tr>
+            <td>{{ aluno.get_nome() }}</td>
+            <td>{{ aluno.get_email() }}</td>
+            <td>{{ aluno.curso_nome }}</td>
+            <td>
+                <a href="{{ url_for('editar_aluno', id=aluno.get_id()) }}">Editar</a> |
+                <a href="{{ url_for('excluir_aluno', id=aluno.get_id()) }}" onclick="return confirm('Tem certeza que deseja excluir este aluno?')">Excluir</a>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="5">Nenhum aluno cadastrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<p>
+    <a href="/cursos">Ver cursos</a>
+</p>
+{% endblock %}

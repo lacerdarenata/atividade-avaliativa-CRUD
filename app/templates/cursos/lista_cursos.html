@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Lista de Cursos</h1>
+
+<a href="{{ url_for('criar_curso') }}" class="btn btn-primary">+ Novo Curso</a>
+
+<table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Carga Horária</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for curso in cursos %}
+        <tr>
+            <td>{{ curso.get_id() }}</td>
+            <td>{{ curso.get_nome() }}</td>
+            <td>{{ curso.get_descricao() }}</td>
+            <td>{{ curso.get_carga_horaria() }}h</td>
+            <td>
+                <a href="{{ url_for('editar_curso', id=curso.get_id()) }}">Editar</a> |
+                <a href="{{ url_for('excluir_curso', id=curso.get_id()) }}" onclick="return confirm('Tem certeza que deseja excluir este curso?')">Excluir</a>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="5">Nenhum curso cadastrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<p>
+    <a href="/alunos">Ver alunos</a>
+</p>
+{% endblock %}

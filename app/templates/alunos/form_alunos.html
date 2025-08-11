@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ 'Editar Aluno' if aluno else 'Novo Aluno' }}</h1>
+
+<form method="POST">
+    <input type="text" id="nome" name="nome" value="{{ aluno.get_nome() if aluno else '' }}" required><br><br>
+
+    <input type="email" id="email" name="email" value="{{ aluno.get_email() if aluno else '' }}"><br><br>
+
+    <label for="curso">Curso:</label>
+    <select name="curso_id" required>
+        <option value="" disabled selected hidden>Selecione um curso</option>
+        {% for curso in cursos %}
+        <option value="{{ curso.get_id() }}" {% if aluno and curso.get_id()==aluno.get_curso_id() %}selected{% endif %}>
+            {{ curso.get_nome() }}
+        </option>
+        {% endfor %}
+    </select><br><br>
+
+    <button type="submit">Salvar</button>
+    <a href="{{ url_for('listar_alunos') }}">Cancelar</a>
+</form>
+{% endblock %}
