@@ -4,9 +4,9 @@
 <h1>{{ 'Editar Aluno' if aluno else 'Novo Aluno' }}</h1>
 
 <form method="POST">
-    <input type="text" id="nome" name="nome" value="{{ aluno.get_nome() if aluno else '' }}" required><br><br>
+    Nome: <input type="text" id="nome" name="nome" value="{{ aluno.get_nome() if aluno else '' }}" required><br><br>
 
-    <input type="email" id="email" name="email" value="{{ aluno.get_email() if aluno else '' }}"><br><br>
+    Email: <input type="email" id="email" name="email" value="{{ aluno.get_email() if aluno else '' }}"><br><br>
 
     <label for="curso">Curso:</label>
     <select name="curso_id" required>
